@@ -4,11 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import random.guestapp.domain.Guest;
@@ -32,6 +28,16 @@ public class GuestController {
     @GetMapping(value = {"/", "/index"})
     public String getHomePage(Model model) {
         return "index";
+    }
+
+    @GetMapping(value = "/login")
+    public String getLoginPage(Model model) {
+        return "login";
+    }
+
+    @GetMapping(value = "/logout-success")
+    public String getLogoutPage(Model model) {
+        return "logout";
     }
 
     @GetMapping(value = "/guests")
