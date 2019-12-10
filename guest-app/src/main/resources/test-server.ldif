@@ -1,0 +1,51 @@
+dn: dc=springframework,dc=org
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: springframework
+o: Pivotal Software
+
+dn: ou=people,dc=springframework,dc=org
+objectclass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=springframework,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: uid=admin,ou=people,dc=springframework,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: First User
+sn: User
+givenName: First
+mail: admin@springframework.org
+uid: admin
+userPassword: {SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=
+
+dn: uid=jdoe,ou=people,dc=springframework,dc=org
+objectClass: inetOrgPerson
+cn: John Doe
+sn: Doe
+givenName: John
+mail: jdoe@springframework.org
+uid: jdoe
+userPassword: {SHA}iEPX+SQWIR3p67lj/0zigSWTKHg=
+
+dn: cn=admin,ou=groups,dc=springframework,dc=org
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: admin
+uniqueMember: uid=admin,ou=people,dc=springframework,dc=org
+
+dn: cn=user,ou=groups,dc=springframework,dc=org
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: user
+uniqueMember: uid=admin,ou=people,dc=springframework,dc=org
+uniqueMember: uid=jdoe,ou=people,dc=springframework,dc=org
+
