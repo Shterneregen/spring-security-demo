@@ -18,6 +18,11 @@ import java.util.ArrayList;
 @EnableOAuth2Client
 public class GuestAppApplication {
 
+    @Value("${client.id}")
+    String clientId;
+    @Value("${secret}")
+    String secret;
+
     public static void main(String[] args) {
         SpringApplication.run(GuestAppApplication.class, args);
     }
@@ -31,8 +36,8 @@ public class GuestAppApplication {
     public OAuth2RestTemplate restTemplate() {
         ClientCredentialsResourceDetails resource = new ClientCredentialsResourceDetails();
         resource.setAccessTokenUri(serviceUrl + AUTH_TOKEN_URL);
-        resource.setClientId("guest_app");
-        resource.setClientSecret("secret");
+        resource.setClientId(clientId);
+        resource.setClientSecret(secret);
         resource.setGrantType("client_credentials");
 
         ArrayList<String> scope = new ArrayList<>();
