@@ -1,0 +1,14 @@
+version: '3'
+services:
+
+  guest-services:
+    build: ./guest-services
+    ports:
+      - "8100:8100"
+
+  guest-app:
+    build: ./guest-app
+    environment:
+      - GUEST_SERVICE_URL=http://guest-services:8100
+    ports:
+      - "8099:8099"
