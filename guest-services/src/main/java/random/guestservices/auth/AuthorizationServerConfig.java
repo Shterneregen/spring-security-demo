@@ -15,13 +15,13 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Value("${client.id}")
-    String clientId;
+    private String clientId;
     @Value("${secret}")
-    String secret;
+    private String secret;
     @Value("${client.id.audit}")
-    String clientIdAudit;
+    private String clientIdAudit;
     @Value("${secret.audit}")
-    String secretAudit;
+    private String secretAudit;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {

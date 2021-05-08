@@ -1,7 +1,5 @@
 package random.guestservices;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,8 +22,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/guests")
 public class GuestServicesController {
-
-    private static final Logger LOG = LoggerFactory.getLogger(GuestServicesController.class);
 
     private final GuestRepository repository;
 
