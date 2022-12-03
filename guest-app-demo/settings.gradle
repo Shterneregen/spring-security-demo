@@ -1,0 +1,6 @@
+rootProject.name = "guest-app-demo"
+
+include(
+        "guest-app",
+        "guest-services"
+)
