@@ -1,17 +1,14 @@
 package random.shterneregen.bootjwth2.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.io.Serializable;
 
+@AllArgsConstructor
 public class JwtResponse implements Serializable {
+    private static final long serialVersionUID = 4296125021242121887L;
 
-	private static final long serialVersionUID = 4296125021242121887L;
-	private final String jwtToken;
-
-	public JwtResponse(String jwtToken) {
-		this.jwtToken = jwtToken;
-	}
-
-	public String getToken() {
-		return this.jwtToken;
-	}
+    @Getter
+    private final String jwtToken;
 }

@@ -1,41 +1,27 @@
 package random.shterneregen.bootjwth2.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import random.shterneregen.bootjwth2.dao.UserDao;
-import random.shterneregen.bootjwth2.model.DAOUser;
-import random.shterneregen.bootjwth2.model.UserDTO;
+import random.shterneregen.bootjwth2.dao.UserRepository;
+import random.shterneregen.bootjwth2.model.UserEntity;
 
 import java.util.ArrayList;
 
-
+@RequiredArgsConstructor
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
+    private final UserRepository userRepository;
 
-	@Autowired
-	private UserDao userDao;
-
-	@Autowired
-	private PasswordEncoder bcryptEncoder;
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		DAOUser user = userDao.findByUsername(username);
-		if (user == null) {
-			throw new UsernameNotFoundException("User not found with username: " + username);
-		}
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-				new ArrayList<>());
-	}
-
-	public DAOUser save(UserDTO user) {
-		DAOUser newUser = new DAOUser();
-		newUser.setUsername(user.getUsername());
-		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		return userDao.save(newUser);
-	}
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserEntity user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+        return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
+    }
 }
